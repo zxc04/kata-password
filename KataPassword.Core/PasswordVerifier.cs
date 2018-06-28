@@ -11,6 +11,7 @@ namespace KataPassword.Core
         public static bool IsPwdValid(string pwd)
         { 
             if(string.IsNullOrWhiteSpace(pwd)) return false;
+            if (pwd.Length < 8) return false;
             return true;
         }
     }
