@@ -19,6 +19,12 @@ namespace KataPassword.Test
             Assert.IsFalse(PasswordVerifier.IsPwdValid("azerty"));
         }
 
+        [TestMethod]
+        public void ShouldReturnFalseWhenPassword8OnlyLower()
+        {
+            Assert.IsFalse(PasswordVerifier.IsPwdValid("abcdefgjk"));
+        }
+
 
     }
 }

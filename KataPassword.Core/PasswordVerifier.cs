@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace KataPassword.Core
 {
-    public  class PasswordVerifier
+    public class PasswordVerifier
     {
         public static bool IsPwdValid(string pwd)
-        { 
-            if(string.IsNullOrWhiteSpace(pwd)) return false;
+        {
+            var pwdstrength = 0;
+            if (string.IsNullOrWhiteSpace(pwd)) return false;
             if (pwd.Length < 8) return false;
-            return true;
+            pwdstrength++;
+            return pwdstrength > 2;
         }
     }
- 
+
 }
