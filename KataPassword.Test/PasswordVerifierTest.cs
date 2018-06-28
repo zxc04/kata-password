@@ -1,4 +1,5 @@
 ﻿using System;
+using KataPassword.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KataPassword.Test
@@ -7,15 +8,11 @@ namespace KataPassword.Test
     public class PasswordVerifierTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ShouldReturnFalseWhenPasswordIs()
         {
-            Assert.IsTrue(true);
+            Assert.IsFalse(PasswordVerifier.IsPwdValid(string.Empty));
         }
 
-        [TestMethod]
-        public void TestMethod2()
-        {
-            Assert.IsTrue(true);
-        }
+       
     }
 }
