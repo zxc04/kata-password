@@ -21,6 +21,10 @@ namespace KataPassword.Core
              regex = new Regex(@"(?=.*[A-Z])");
              match = regex.Match(pwd);
             if (match.Success) pwdstrength++;
+            regex = new Regex(@"(?=.*\d)");
+            match = regex.Match(pwd);
+            if (match.Success) pwdstrength++;
+            
             return pwdstrength > 2;
         }
     }
