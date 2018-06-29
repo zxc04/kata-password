@@ -1,5 +1,4 @@
-﻿using System;
-using KataPassword.Core;
+﻿using KataPassword.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KataPassword.Test
