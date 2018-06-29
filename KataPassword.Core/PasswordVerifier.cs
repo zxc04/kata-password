@@ -11,31 +11,23 @@ namespace KataPassword.Core
     {
         public static bool IsPwdValid(string pwd)
         {
-            var pwdstrength = 0;
-            
-            if (string.IsNullOrWhiteSpace(pwd)) return false;
+           
+            var request = new Request { Password = pwd, Strength = 0 };
 
-            if (pwd.Length < 8) return false;
-            pwdstrength++;
+            //Setup responsables
+            var lenghtValidator = new LenghtValidator();
+            var lowerCaseValidator = new LowerCaseValidator();
+            var upperCaseValidator = new UpperCaseValidator();
+            var digitValidator = new DigitValidator();
+            var symbolValidator = new SymbolValidator();
 
-            Regex regex = new Regex(@"(?=.*[a-z])");
-            Match match = regex.Match(pwd);
-            if (match.Success) pwdstrength++;
+            //// Setup Chain of Responsibility
+            lenghtValidator.SetSuccessor(lowerCaseValidator);
+            lowerCaseValidator.SetSuccessor(upperCaseValidator);
+            upperCaseValidator.SetSuccessor(digitValidator);
+            digitValidator.SetSuccessor(symbolValidator);
 
-             regex = new Regex(@"(?=.*[A-Z])");
-             match = regex.Match(pwd);
-            if (match.Success) pwdstrength++;
-
-            regex = new Regex(@"(?=.*\d)");
-            match = regex.Match(pwd);
-            if (match.Success) pwdstrength++;
-
-            regex = new Regex(@"(?=.*[!@#$%^&*()_+=])");
-            match = regex.Match(pwd);
-            if (match.Success) pwdstrength++;
-
-
-            return pwdstrength > 2;
+            return lenghtValidator.HandleRequest(request) > 2;
         }
     }
 
